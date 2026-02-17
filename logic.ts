@@ -51,7 +51,7 @@ export async function getFriendsList(filter: FriendFilter, guildId?: string, cha
         if (missing.length > 0) {
             requestGuildMembers(guildId, missing);
             syncTriggered = true;
-            await new Promise(r => setTimeout(r, 1000)); // Short wait for initial sync
+            await new Promise(r => setTimeout(r, 1500)); // Short wait for initial sync
         }
     }
 
@@ -97,12 +97,8 @@ export async function getFriendsList(filter: FriendFilter, guildId?: string, cha
         const name = `<@${f.id}>`;
         let location = "";
 
-        if (f.channelId) {
-            location = `: 🎙️ <#${f.channelId}>`;
-        } else {
-            location = `: ${emoji} ${f.status.charAt(0).toUpperCase() + f.status.slice(1)}`;
-        }
-        return `- ${name}${location}`;
+        if (f.channelId) location = `: 🎙️ <#${f.channelId}>`;
+        return `${emoji} ${name}${location}`;
     });
 
     output += lines.join("\n");

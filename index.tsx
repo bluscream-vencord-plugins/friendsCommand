@@ -19,9 +19,9 @@ export default definePlugin({
                     type: ApplicationCommandOptionType.STRING,
                     required: false,
                     choices: [
-                        { name: "All Mutual Friends", label: "All Mutual Friends", value: FriendFilter.ALL },
-                        { name: "Current Server", label: "Current Server", value: FriendFilter.GUILD },
-                        { name: "Current Voice Channel", label: "Current Voice Channel", value: FriendFilter.CHANNEL }
+                        { name: "all", label: "All Mutual Friends", value: FriendFilter.ALL },
+                        { name: "guild", label: "Current Server", value: FriendFilter.GUILD },
+                        { name: "channel", label: "Current Voice Channel", value: FriendFilter.CHANNEL }
                     ]
                 },
                 {

@@ -61,7 +61,7 @@ export async function getFriendsList(filter: FriendFilter, guildId?: string, cha
     if (filter === FriendFilter.GUILD && guildId) {
         // Filter by guild membership (or being in a VC in that guild)
         targetIds = friendIds.filter(id => GuildMemberStore.isMember(guildId, id) || !!guildVoiceStates[id]);
-        if (targetIds.length === 0) return "🔍 No friends found in this server.";
+        if (targetIds.length === 0) return "🔍 No friends found in this server or not synced yet.";
     } else if (filter === FriendFilter.CHANNEL && channelId) {
         // Filter by specific voice channel
         const channelVoiceStates = VoiceStateStore.getVoiceStatesForChannel(channelId);
@@ -87,7 +87,7 @@ export async function getFriendsList(filter: FriendFilter, guildId?: string, cha
         return a.name.localeCompare(b.name);
     });
 
-    const titlePrefix = filter === FriendFilter.CHANNEL ? "Voice Channel" : filter === FriendFilter.GUILD ? "Server" : "Account";
+    // const titlePrefix = filter === FriendFilter.CHANNEL ? "Voice Channel" : filter === FriendFilter.GUILD ? "Server" : "Account";
     const headerSuffix = filter === FriendFilter.GUILD && guildId ? `in Server` : (filter === FriendFilter.CHANNEL && channelId ? `in Voice Channel` : "on Account");
 
     let output = `## 👥 Mutual Friends ${headerSuffix} (${friendInfo.length})\n`;

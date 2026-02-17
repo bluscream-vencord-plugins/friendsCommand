@@ -38,7 +38,7 @@ export default definePlugin({
                 const guildId = ctx.guild?.id || ChannelStore.getChannel(ctx.channel.id)?.guild_id;
                 const channelId = SelectedChannelStore.getVoiceChannelId();
 
-                const output = getFriendsList(filter, guildId, channelId);
+                const output = await getFriendsList(filter, guildId, channelId);
 
                 if (share) {
                     sendMessage(ctx.channel.id, { content: output });

@@ -46,7 +46,7 @@ export function getFriendsList(filter: FriendFilter, guildId?: string, channelId
         let status = emoji;
 
         if (voiceState && voiceState.channelId) {
-            status = `🎙️ **In Voice:** <#${voiceState.channelId}>`;
+            status = `🎙️ <#${voiceState.channelId}>`;
         } else {
             status = `${emoji} ${presence.charAt(0).toUpperCase() + presence.slice(1)}`;
         }

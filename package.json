@@ -1,5 +1,5 @@
 {
-    "name": "friends-command",
+    "name": "friendsCommand",
     "version": "1.0.0",
     "description": "Adds a /friends command to list mutual friends and their current location.",
     "main": "index.tsx",

@@ -1,3 +1,4 @@
+import { sendBotMessage } from "@api/Commands";
 import { RelationshipStore, GuildMemberStore, UserStore, VoiceStateStore, ChannelStore, PresenceStore, FluxDispatcher } from "@webpack/common";
 
 export enum FriendFilter {
@@ -51,7 +52,7 @@ export async function getFriendsList(filter: FriendFilter, guildId?: string, cha
         if (missing.length > 0) {
             requestGuildMembers(guildId, missing);
             syncTriggered = true;
-            await new Promise(r => setTimeout(r, 1500)); // Short wait for initial sync
+            await new Promise(r => setTimeout(r, 2500)); // Short wait for initial sync
         }
     }
 
@@ -97,15 +98,15 @@ export async function getFriendsList(filter: FriendFilter, guildId?: string, cha
         const name = `<@${f.id}>`;
         let location = "";
 
-        if (f.channelId) location = `: 🎙️ <#${f.channelId}>`;
+        if (f.channelId) location = ` <#${f.channelId}>`;
         return `${emoji} ${name}${location}`;
     });
 
     output += lines.join("\n");
 
-    if (syncTriggered) {
-        output += "\n\n*Note: Some friends may still be syncing. Try running again if anyone is missing.*";
-    }
+    // if (syncTriggered) {
+    //     output += "\n\n*Note: Some friends may still be syncing. Try running again if anyone is missing.*";
+    // }
 
     return output;
 }
